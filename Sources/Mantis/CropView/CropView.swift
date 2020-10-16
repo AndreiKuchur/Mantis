@@ -74,6 +74,7 @@ class CropView: UIView {
     }
     
     init(image: UIImage, viewModel: CropViewModel = CropViewModel()) {
+        print("test fork")
         self.image = image
         self.viewModel = viewModel
         
