@@ -23,6 +23,7 @@
 /* Begin PBXBuildFile section */
 		5F7D22AE245BCA8D0015A0D5 /* CropToolbarProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7D22AD245BCA8D0015A0D5 /* CropToolbarProtocol.swift */; };
 		5FCE938724834C57002BBE65 /* ToolbarButtonOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FCE938624834C57002BBE65 /* ToolbarButtonOptions.swift */; };
+		91DB025A256169870042C738 /* CropTopViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DB0259256169870042C738 /* CropTopViewProtocol.swift */; };
 		FEDAAD8625205CC300D95667 /* RatioSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAAD8525205CC300D95667 /* RatioSelector.swift */; };
 		FEDAAD8C25205DE900D95667 /* RatioItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAAD8B25205DE900D95667 /* RatioItemView.swift */; };
 		OBJ_100 /* RotationDialPlate.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* RotationDialPlate.swift */; };
@@ -84,6 +85,7 @@
 /* Begin PBXFileReference section */
 		5F7D22AD245BCA8D0015A0D5 /* CropToolbarProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CropToolbarProtocol.swift; sourceTree = "<group>"; };
 		5FCE938624834C57002BBE65 /* ToolbarButtonOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarButtonOptions.swift; sourceTree = "<group>"; };
+		91DB0259256169870042C738 /* CropTopViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropTopViewProtocol.swift; sourceTree = "<group>"; };
 		FEDAAD8525205CC300D95667 /* RatioSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatioSelector.swift; sourceTree = "<group>"; };
 		FEDAAD8B25205DE900D95667 /* RatioItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatioItemView.swift; sourceTree = "<group>"; };
 		"Mantis::Mantis::Product" /* Mantis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Mantis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +184,7 @@
 				OBJ_28 /* ToolBarButtonImageBuilder.swift */,
 				FEDAAD8525205CC300D95667 /* RatioSelector.swift */,
 				FEDAAD8B25205DE900D95667 /* RatioItemView.swift */,
+				91DB0259256169870042C738 /* CropTopViewProtocol.swift */,
 			);
 			path = CropViewController;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				FEDAAD8625205CC300D95667 /* RatioSelector.swift in Sources */,
 				OBJ_93 /* CropVisualEffectView.swift in Sources */,
 				OBJ_94 /* RatioOptions.swift in Sources */,
+				91DB025A256169870042C738 /* CropTopViewProtocol.swift in Sources */,
 				OBJ_95 /* CGAngle.swift in Sources */,
 				OBJ_96 /* DialConfig.swift in Sources */,
 				OBJ_97 /* RotationCalculator.swift in Sources */,

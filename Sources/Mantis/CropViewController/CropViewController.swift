@@ -62,6 +62,7 @@ public class CropViewController: UIViewController {
     private var orientation: UIInterfaceOrientation = .unknown
     private lazy var cropView = CropView(image: image, viewModel: CropViewModel())
     private var cropToolbar: CropToolbarProtocol
+    private var topBar: CropTopViewProtocol?
     private var ratioPresenter: RatioPresenter?
     private var ratioSelector: RatioSelector?
     private var stackView: UIStackView?
@@ -76,11 +77,14 @@ public class CropViewController: UIViewController {
     init(image: UIImage,
          config: Mantis.Config = Mantis.Config(),
          mode: CropViewControllerMode = .normal,
-         cropToolbar: CropToolbarProtocol = CropToolbar(frame: CGRect.zero)) {
+         cropToolbar: CropToolbarProtocol = CropToolbar(frame: CGRect.zero),
+         topBar: CropTopViewProtocol?) {
         self.image = image
         self.config = config
         self.mode = mode
         self.cropToolbar = cropToolbar
+        //TODO: set topBar
+        self.topBar = topBar
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -118,6 +122,17 @@ public class CropViewController: UIViewController {
         
         cropToolbar.initConstraints(heightForVerticalOrientation: config.cropToolbarConfig.cropToolbarHeightForVertialOrientation, widthForHorizonOrientation: config.cropToolbarConfig.cropToolbarWidthForHorizontalOrientation)
     }
+
+    fileprivate func createTopBar() {
+        //TODO: make topBar not optional
+        guard let topBar = topBar else { return }
+        //TODO: set toBarDelegate
+        topBar.cropTopViewDelegate = self
+        topBar.createToolbarUI()
+
+        //TODO: change constraints init to
+        topBar.initConstraints(heightForVerticalOrientation: config.cropToolbarConfig.cropToolbarHeightForVertialOrientation) //pass constraints from config
+    }
         
     fileprivate func getFixedRatioManager() -> FixedRatioManager {
         let type: RatioType = cropView.getRatioType(byImageIsOriginalisHorizontal: cropView.image.isHorizontal())
@@ -137,6 +152,7 @@ public class CropViewController: UIViewController {
         
         createCropView()
         createCropToolbar()
+        createTopBar()
         if config.cropToolbarConfig.ratioCandidatesShowType == .alwaysShowRatioList && config.cropToolbarConfig.includeFixedRatioSettingButton {
             createRatioSelector()
         }
@@ -392,6 +408,7 @@ extension CropViewController {
         cropStackView?.translatesAutoresizingMaskIntoConstraints = false
         stackView?.translatesAutoresizingMaskIntoConstraints = false
         cropToolbar.translatesAutoresizingMaskIntoConstraints = false
+        topBar?.translatesAutoresizingMaskIntoConstraints = false
         cropView.translatesAutoresizingMaskIntoConstraints = false
         
         stackView?.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -413,6 +430,8 @@ extension CropViewController {
         stackView?.removeArrangedSubview(cropToolbar)
         
         if Orientation.isPortrait || Orientation.isLandscapeRight {
+            //TODO: remove force unwrap
+            stackView?.addArrangedSubview(topBar!)
             stackView?.addArrangedSubview(cropStackView)
             stackView?.addArrangedSubview(cropToolbar)
         } else if Orientation.isLandscapeLeft {
@@ -424,6 +443,7 @@ extension CropViewController {
     fileprivate func updateLayout() {
         setStackViewAxis()
         cropToolbar.respondToOrientationChange()
+        topBar?.adjustLayoutConstraints()
         changeStackViewOrder()
     }
 }
@@ -465,6 +485,16 @@ extension CropViewController: CropToolbarDelegate {
     
     public func didSelectRatio(ratio: Double) {
         setFixedRatio(ratio)
+    }
+}
+
+extension CropViewController: CropTopViewDelegate {
+    public func didSelectBack() {
+        print("did select back")
+    }
+
+    public func didSelectNext() {
+        handleCrop()
     }
 }
 
